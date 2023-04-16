@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,11 +12,15 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+*/;
 
 Route::redirect('/', '/home', 301);
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/admin', [App\Http\Controllers\Auth_adminController::class, 'index'])->name('loginAdmin');
+Route::post('/custom-login', [App\Http\Controllers\Auth_adminController::class, 'customLogin'])->name('login.custom'); 
+Route::get('/signout', [App\Http\Controllers\Auth_adminController::class, 'signOut'])->name('signout');
 
