@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Candidat;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -18,8 +19,9 @@ class AdminController extends Controller
     
     public function index()
     {
-        //
+        return view('candidat.add');
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -28,12 +30,13 @@ class AdminController extends Controller
      */
     public function create()
     {
+        return view('candidat.add');
         //
-        $user = User::create([
+      /*  $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-        ]);
+        ]);*/
     }
 
     /**
@@ -44,7 +47,15 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $candidat = new Candidat();
+        $candidat->nom = $request->nom;
+        $candidat->prenom = $request->prenom;
+        $candidat->email = $request->email;
+        $candidat->parti = $request->parti;
+
+        $candidat->save();
+
+        return redirect()->back()->with('success','enrigistrement Reussi !!');
     }
 
     /**
