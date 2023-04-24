@@ -25,19 +25,19 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item  navbar-brand">
-                        <a class="nav-link mw-20" href="acceuil">ACCEUIL</span></a>
+                        <a class="nav-link mw-20" href="/acceuil">ACCEUIL</span></a>
+                    </li> 
+                    <li class="nav-item navbar-brand">
+                        <a class="nav-link" href="/candidat">LISTE CANDIDATS</a>
                     </li>
                     <li class="nav-item navbar-brand">
                         <a class="nav-link" href="/ajouter">AJOUTER CANDIDAT</a>
                     </li>
                     <li class="nav-item navbar-brand">
-                        <a class="nav-link" href="/demande">DEMANDES CANDIDATURES</a>
+                        <a class="nav-link" href="electeur">LISTE ELECTEURS</a>
                     </li>
                     <li class="nav-item navbar-brand">
-                        <a class="nav-link" href="#">LISTE ELECTEURS</a>
-                    </li>
-                    <li class="nav-item navbar-brand">
-                        <a class="nav-link" href="#">INFO UTILISATEUR</a>
+                        <a class="nav-link" href="signout">SE DECONNECTER</a>
                     </li>
                 </ul>
             </div>

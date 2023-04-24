@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Candidat;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -13,32 +14,33 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     protected $fillable = [
-        'name', 'email', 'password',
-    ];
+    
+
+    public function acceuil()
+    {
+        return view('admin');
+    }
     
     public function index()
     {
         return view('candidat.add');
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function list_candidat()
     {
-        return view('candidat.add');
-        //
-      /*  $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);*/
+        $candidats = Candidat::All();
+        return view('candidat.list', compact('candidats'));
+
     }
 
+    public function list_electeur()
+    {
+        $electeurs = User::All();
+        return view('electeur.list', compact('electeurs'));
+
+    }
+
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -47,6 +49,13 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
+        
+        $request->validate([
+            'nom' => ['bail','required'],
+            'prenom' => ['bail','required'],
+            'email' => ['bail','required','email'],
+            'parti' => ['bail','required']
+        ]);
         $candidat = new Candidat();
         $candidat->nom = $request->nom;
         $candidat->prenom = $request->prenom;
@@ -58,17 +67,8 @@ class AdminController extends Controller
         return redirect()->back()->with('success','enrigistrement Reussi !!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
+   
+   
     /**
      * Show the form for editing the specified resource.
      *
@@ -77,7 +77,8 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $candidat = Candidat::findOrFail($id);
+        return view('candidat.edit',compact('candidat'));
     }
 
     /**
@@ -89,7 +90,23 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nom' => ['bail','required'],
+            'prenom' => ['bail','required'],
+            'email' => ['bail','required','email'],
+            'parti' => ['bail','required']
+        ]);
+        
+        $candidat = Candidat::findOrFail($id);
+        $candidat->nom = $request->nom;
+        $candidat->prenom = $request->prenom;
+        $candidat->email = $request->email;
+        $candidat->parti = $request->parti;
+
+        $candidat->update();
+
+        return redirect()->route('list_candidat')->with('success','modification Reussi !!');
+      
     }
 
     /**
@@ -100,6 +117,16 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $candidat = Candidat::find($id) ;
+        $electeur = User::find($id) ;
+       if ($candidat != null) {
+            $candidat->delete();
+            return redirect()->back()->with('success','Suppression Reussi !!');
+       } 
+       else if ($electeur != null){
+            $electeur->delete();
+            return redirect()->back()->with('success','Suppression Reussi !!');
+       }
+       
     }
 }
