@@ -19,29 +19,25 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
-    <nav class="navbar navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">Acceuil</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<body>         
+    <nav class="navbar navbar-expand-lg  bg-primary">
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle texte-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        GESTION CANDIDATS
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">LISTE</a>
-                        <a class="dropdown-item" href="#">AJOUTER CANDIDAT</a>
-                    </div>
+            <ul class="nav nav-pills nav-justified">
+                <li class="nav-item  navbar-brand ">
+                    <a class="nav-link mw-20" href="/home"><h3 class="text-white"> ACCEUIL</h3></a>
+                </li> 
+                
+                <li class="nav-item navbar-brand justify-content-end">
+                        <button type="button" class="btn btn-warning">
+                            <a class="nav-link" href="signout">SE DECONNECTER</a>
+                        </button>
+                
                 </li>
-               
-          
+            </ul>
         </div>
-      </nav>
-
-      @yield('content')
+    </nav>
+    
+    @yield('content')
 </body>
 </html>

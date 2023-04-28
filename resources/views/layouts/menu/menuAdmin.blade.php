@@ -25,7 +25,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item  navbar-brand">
-                        <a class="nav-link mw-20" href="/acceuil">ACCEUIL</span></a>
+                        <a class="nav-link mw-20" href="/acceuil">ACCEUIL</a>
                     </li> 
                     <li class="nav-item navbar-brand">
                         <a class="nav-link" href="/candidat">LISTE CANDIDATS</a>
@@ -37,7 +37,11 @@
                         <a class="nav-link" href="electeur">LISTE ELECTEURS</a>
                     </li>
                     <li class="nav-item navbar-brand">
-                        <a class="nav-link" href="signout">SE DECONNECTER</a>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="button" class="btn btn-warning pull-right">
+                                <a class="nav-link" href="signout">SE DECONNECTER</a>
+                            </button>
+                          </div>
                     </li>
                 </ul>
             </div>
